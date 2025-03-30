@@ -1,5 +1,7 @@
+from services.utils import showMenu
+
 def main():
-    print("hello world")
+    showMenu()
 
 if __name__ == "__main__":
     main()
