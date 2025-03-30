@@ -1,4 +1,5 @@
 
+from controllers.inspection import inspection_section
 from controllers.register import register_merchandise
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_error, send_grey, send_yellow
@@ -7,6 +8,7 @@ from data.memory_storage import merchandise_store
 
 def showMenu():
     while True:
+        clear_console()
         send_yellow("\n | Sistema de Aduana  | \n | por Alexander Rios |")
         print("                        ")
         send_grey("1. Registrar mercancia.")
@@ -37,7 +39,9 @@ def showMenu():
                 input("\nPulsa ENTER para ir al menú...")
                 continue
         elif choice == "2":
-            break
+            result = inspection_section()
+            if result == "0":
+                continue
         elif choice == "3":
             break
         elif choice == "4":
@@ -52,6 +56,6 @@ def showMenu():
             print("Saliendo...")
             break
         else:
+            clear_console()
             send_error("Invalido, elige una opción valida e intentalo nuevamente.")
 
-    
