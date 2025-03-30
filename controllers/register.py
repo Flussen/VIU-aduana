@@ -35,7 +35,7 @@ def register_merchandise():
         return
     
 
-    new_merch = new_merchandise(identifier, description, origin, value, currency, category, weight, PENDIENTE, 0)
+    new_merch = new_merchandise(identifier, description, origin, value, currency, category, weight, PENDIENTE)
 
     merchandise_store[new_merch["id"]] = new_merch
 
@@ -46,8 +46,9 @@ def register_merchandise():
     send_yellow("¿Deseas agregar otro producto?")
     send_grey("0. Volver al menú.")
     send_grey("1. Agregar un nuevo producto.")
+    send_grey("2. Listar todos los productos agregados.")
 
-    result = input("(0-1): ")
+    result = input("(0-2): ")
     return result
         
 

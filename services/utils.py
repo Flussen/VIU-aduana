@@ -1,6 +1,8 @@
 
 from controllers.register import register_merchandise
+from utils.cleaner import clear_console
 from utils.color import send_error, send_grey, send_yellow
+from data.memory_storage import merchandise_store
 
 
 def showMenu():
@@ -24,7 +26,14 @@ def showMenu():
                 continue
             elif result == "1":
                 result = register_merchandise()
-            break
+            elif result == "2":
+                for id, data in merchandise_store.items():
+                    clear_console()
+                    send_yellow("-- Productos recientemente agregados --")
+                    send_yellow(f"{id}: ", end="")
+                    send_grey(data["description"])
+                input("\nPulsa ENTER para ir al menú...")
+                continue
         elif choice == "2":
             break
         elif choice == "3":
