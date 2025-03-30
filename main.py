@@ -1,3 +1,9 @@
+## Sistema de gestión de Aduadas
+## por Alexander Rios para la asignatura de metodología
+## de la programación (Programación II) de VIU.
+##
+## 2025.
+
 from services.utils import showMenu
 
 def main():

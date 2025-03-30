@@ -1,5 +1,8 @@
+from models.merchandise import new_merchandise
 from utils.cleaner import clear_console
 from utils.color import send_error, send_grey, send_success, send_yellow
+from utils.status import PENDIENTE
+from data.memory_storage import merchandise_store
 
 def register_merchandise():
     """
@@ -30,10 +33,16 @@ def register_merchandise():
     if value is None:
         send_error("Peso es None!")
         return
+    
 
+    new_merch = new_merchandise(identifier, description, origin, value, currency, category, weight, PENDIENTE, 0)
+
+    merchandise_store[new_merch["id"]] = new_merch
 
     clear_console()
     send_success("Registrado exitosamente")
+
+    
     send_yellow("¿Deseas agregar otro producto?")
     send_grey("0. Volver al menú.")
     send_grey("1. Agregar un nuevo producto.")
@@ -65,3 +74,4 @@ def set_value_with_exception_handler():
     except ValueError:
         send_error("Valor inválido. Usa un número.")
         return set_value_with_exception_handler()
+    

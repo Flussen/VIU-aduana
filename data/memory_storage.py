@@ -1,0 +1,2 @@
+merchandise_store = {}
+incidents = []
