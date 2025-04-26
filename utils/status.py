@@ -1,3 +1,3 @@
-PENDIENTE = "Pendiente"
-APROBADO = "Aprobado"
-RECHAZADO = "Rechazado"
+PENDING = "Pendiente"
+APPROVED = "Aprobado"
+REFUSED = "Rechazado"

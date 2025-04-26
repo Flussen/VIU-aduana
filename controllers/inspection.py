@@ -3,7 +3,8 @@
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_cyan, send_error, send_grey, send_success, send_yellow
 from data.memory_storage import merchandise_store
-from utils.status import APROBADO, PENDIENTE, RECHAZADO
+from utils.common import RETURN_TO_MENU_STR
+from utils.status import APPROVED, PENDING, REFUSED
 
 def inspection_section():
     """
@@ -30,12 +31,12 @@ def list_merchandises_to_approve():
 
     pending_items = [
         (id, data) for id, data in merchandise_store.items()
-        if data["status"] == PENDIENTE
+        if data["status"] == PENDING
     ]
 
     if not pending_items:
         send_yellow("¡No hay mercancias pendientes de inspección!")
-        input("\nPulsa ENTER para volver...")
+        input(RETURN_TO_MENU_STR)
         return
     
     print("")
@@ -67,19 +68,19 @@ def list_merchandises_to_approve():
             if result == "0":
                 return
             elif result == "1":
-                data["status"] = APROBADO
+                data["status"] = APPROVED
                 send_success("¡Producto aprobado!")
-                input("\nPulsa ENTER para volver...")
+                input(RETURN_TO_MENU_STR)
                 return
             elif result == "2":
-                data["status"] = RECHAZADO
-                send_success("¡Producto rechazado!")
-                input("\nPulsa ENTER para volver...")
+                data["status"] = REFUSED
+                send_success(RETURN_TO_MENU_STR)
+                input(RETURN_TO_MENU_STR)
                 return
             break
     else:
         send_error("¡No existe esa mercancia!")
-        input("\nPulsa ENTER para volver a intentar...")
+        input(RETURN_TO_MENU_STR)
         return list_merchandises_to_approve()
 
 def aprove_merchandise():

@@ -4,7 +4,7 @@
 from models.merchandise import new_merchandise
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_error, send_grey, send_success, send_yellow
-from utils.status import PENDIENTE
+from utils.status import PENDING
 from data.memory_storage import merchandise_store
 
 def register_merchandise():
@@ -40,7 +40,7 @@ def register_merchandise():
         return
     
 
-    new_merch = new_merchandise(identifier, description, origin, value, currency, category, weight, PENDIENTE)
+    new_merch = new_merchandise(identifier, description, origin, value, currency, category, weight, PENDING)
 
     merchandise_store[new_merch["id"]] = new_merch
 
