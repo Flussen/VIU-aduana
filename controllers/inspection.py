@@ -1,5 +1,6 @@
 ## Inspección y aprobación de mercancias.
 
+from controllers.tariff import show_tariff_menu
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_cyan, send_error, send_grey, send_success, send_yellow
 from data.memory_storage import merchandise_store
@@ -70,12 +71,15 @@ def list_merchandises_to_approve():
             elif result == "1":
                 data["status"] = APPROVED
                 send_success("¡Producto aprobado!")
-                input(RETURN_TO_MENU_STR)
-                return
+                result = show_tariff_menu(data)
+                if result == 1:
+                    return
             elif result == "2":
                 data["status"] = REFUSED
-                send_success(RETURN_TO_MENU_STR)
-                input(RETURN_TO_MENU_STR)
+                send_success("¡Producto rechazado!")
+                refused_reason = input("Por favor indique una razón para su rechazo.")
+                # ?? qué hacer con la razón de rechazo?
+                # TODO
                 return
             break
     else:

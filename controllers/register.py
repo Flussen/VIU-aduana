@@ -4,8 +4,10 @@
 from models.merchandise import new_merchandise
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_error, send_grey, send_success, send_yellow
+from utils.common import RETURN_BACK_STR
 from utils.status import PENDING
 from data.memory_storage import merchandise_store
+from data.memory_storage import categories_with_tariffs
 
 def register_merchandise():
     """
@@ -17,17 +19,26 @@ def register_merchandise():
     send_blue("Menú > 1. Registro Mercancia")
     print(" ")
     send_yellow(">> Registro de una nueva Mercancia")
-    identifier = input("ID (mín. 3 carácteres): ")
+    identifier = input("ID (mín. 3 carácteres, 0 para salir): ")
+    
+    if identifier == "0":
+        return
 
     if len(identifier) < 3:
         send_error("Identificador inválido.")
+        input(RETURN_BACK_STR)
         register_merchandise()
         return
     
     description = input("Descripción: ")
     origin = input("País de origen: ")
     currency = input("Moneda (USD, EUR, etc.): ")
-    category = input("Categoría: ")
+    category = input("Categoría (Solo se permite categorías registradas): ")
+    if category not in categories_with_tariffs:
+        send_error("¡La categoría no está registrada!")
+        input(RETURN_BACK_STR)
+        register_merchandise()
+        return
 
     weight = set_weight_with_exception_handler()
     if weight is None:

@@ -1,0 +1,48 @@
+{
+    "M001": {
+      "id": "M001",
+      "description": "Laptop de última generación",
+      "origin": "USA",
+      "value": 1200.00,
+      "currency": "USD",
+      "category": "Electrónica",
+      "weight": 2.5
+    },
+    "M002": {
+      "id": "M002",
+      "description": "Chaqueta impermeable",
+      "origin": "Alemania",
+      "value": 150.00,
+      "currency": "EUR",
+      "category": "Ropa",
+      "weight": 1.2
+    },
+    "M003": {
+      "id": "M003",
+      "description": "Lote de alimentos enlatados",
+      "origin": "México",
+      "value": 300.00,
+      "currency": "USD",
+      "category": "Alimentos",
+      "weight": 20.0
+    },
+    "M004": {
+      "id": "M004",
+      "description": "Detergente industrial",
+      "origin": "China",
+      "value": 80.00,
+      "currency": "USD",
+      "category": "Productos químicos",
+      "weight": 10.0
+    },
+    "M005": {
+      "id": "M005",
+      "description": "Set de herramientas varias",
+      "origin": "España",
+      "value": 200.00,
+      "currency": "EUR",
+      "category": "Otros",
+      "weight": 5.0
+    }
+  }
+  

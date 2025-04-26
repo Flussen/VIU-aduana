@@ -1,0 +1,5 @@
+Electrónica:15
+Ropa:10
+Alimentos:5
+Productos químicos:20
+Otros:12
