@@ -1,6 +1,7 @@
 
 from controllers.inspection import inspection_section
 from controllers.register import register_merchandise
+from controllers.release import show_release_menu
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_error, send_grey, send_yellow
 from data.memory_storage import merchandise_store
@@ -45,7 +46,9 @@ def showMenu():
         elif choice == "3":
             break
         elif choice == "4":
-            break
+            result = show_release_menu()
+            if result == "0":
+                continue
         elif choice == "5":
             break
         elif choice == "6":

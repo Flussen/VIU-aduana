@@ -69,7 +69,6 @@ def list_merchandises_to_approve():
             if result == "0":
                 return
             elif result == "1":
-                data["status"] = APPROVED
                 send_success("¡Producto aprobado!")
                 result = show_tariff_menu(data)
                 if result == 1:
