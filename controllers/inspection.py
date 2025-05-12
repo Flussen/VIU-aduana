@@ -69,26 +69,27 @@ def list_merchandises_to_approve():
             if result == "0":
                 return
             elif result == "1":
+                data["status"] = APPROVED
                 send_success("¡Producto aprobado!")
-                result = show_tariff_menu(data)
                 if result == 1:
                     return
             elif result == "2":
-                data["status"] = REFUSED
-                send_success("¡Producto rechazado!")
-                refused_reason = input("Por favor indique una razón para su rechazo.")
-                # ?? qué hacer con la razón de rechazo?
-                # TODO
+                refused_reason = ""
+                while True:
+                    refused_reason = input("Por favor indique una razón para su rechazo: ")
+                    if not refused_reason:
+                        send_error("¡Por favor, indique una razón para su rechazo!")
+                        continue
+                    else: 
+                        data["status"] = REFUSED
+                        send_success("¡Producto rechazado!")
+                        break 
+
+                input("Pulsa ENTER para volver al menú...")
                 return
             break
     else:
         send_error("¡No existe esa mercancia!")
         input(RETURN_TO_MENU_STR)
         return list_merchandises_to_approve()
-
-def aprove_merchandise():
-    pass
-
-def reject_merchandise():
-    pass
 
