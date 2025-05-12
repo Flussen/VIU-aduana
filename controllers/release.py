@@ -2,6 +2,7 @@ from utils.color import send_blue, send_error, send_grey, send_success, send_yel
 from utils.common import RETURN_TO_MENU_STR
 from utils.status import APPROVED
 from data.memory_storage import merchandise_store
+import os
 
 RELEASED_ITEMS_FILE = "released_items.txt"
 
@@ -32,7 +33,7 @@ def show_release_menu():
         if id == selected:
             r = input(f"¿Estás seguro que deseas liberar el producto {id}? (0 - No | 1 - Sí): ").strip()
             if r == "1":
-                release_item(id, data)
+                release_item(data)
                 return 1
             else:
                 return 0
@@ -43,8 +44,14 @@ def show_release_menu():
 def release_item(item):
     if item["status"] == APPROVED and item.get("tariff", 0) > 0:
         try:
-            with open(RELEASED_ITEMS_FILE, "a", encoding="utf-8") as file:
-                file.write(f"{item["id"]}: {item['description']} - {item['origin']} - {item['value']} {item['currency']} - {item['category']} - {item['weight']}kg - Arancel: {item['tariff']}€\n")
+            file_exists = os.path.exists(RELEASED_ITEMS_FILE)
+            with open(RELEASED_ITEMS_FILE, 'a', encoding='utf-8') as file:
+                if not file_exists:
+                    file.write(f"{'ID':<8} {'Descripción':<30} {'Origen':<15} {'Valor':<10} {'Moneda':<8} {'Categoría':<20} {'Peso':<8} {'Arancel':<8}\n")
+                    file.write("=" * 120 + "\n")
+                file.write(f"{item['id']:<8} {item['description']:<30} {item['origin']:<15} {item['value']:<10.2f} {item['currency']:<8} {item['category']:<20} {item['weight']:<8.2f} {item['tariff']:<8.2f}\n")
+
+
         except Exception as e:
             send_error(f"Error al registrar la mercancía liberada: {e}")
             input(RETURN_TO_MENU_STR)
