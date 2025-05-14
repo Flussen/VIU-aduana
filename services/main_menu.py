@@ -46,7 +46,8 @@ def showMenu():
                 continue
         elif choice == "3":
             result = show_tariff_menu()
-            break
+            if result == "0":
+                continue
         elif choice == "4":
             result = show_release_menu()
             if result == "0":
