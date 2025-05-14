@@ -8,7 +8,11 @@ from utils.status import APPROVED
 def calculate_tariff(item):
     return item["value"] * (categories_with_tariffs[item["category"]] / 100)
 
-def show_tariff_menu(item):
+def show_tariff_menu():
+    clear_console()
+    
+
+def show_tariff_menu_2(item):
     clear_console()
     result = input(f"Para aprobar {item['id']}, debe calcularse los aranceles. ¿Continuar? (0-1): ")
     if result == "1":
