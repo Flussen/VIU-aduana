@@ -1,4 +1,5 @@
 
+from controllers.incidents import incidents_menu
 from controllers.inspection import inspection_section
 from controllers.register import register_merchandise
 from controllers.release import show_release_menu
@@ -24,7 +25,7 @@ def showMenu():
 
         choice = input("Selecciona una opción (1-8): ")
 
-        if choice == "1":
+        if choice == "1": ## Registro de mercancia
             result = register_merchandise()
             if result == "0":
                 continue
@@ -40,25 +41,28 @@ def showMenu():
                     send_grey(data["description"])
                 input("\nPulsa ENTER para ir al menú...")
                 continue
-        elif choice == "2":
+        elif choice == "2": ## Inspección y aprobación
             result = inspection_section()
             if result == "0":
                 continue
-        elif choice == "3":
+        elif choice == "3": ## Cálculo de aranceles
             result = show_tariff_menu()
             if result == "0":
                 continue
-        elif choice == "4":
+        elif choice == "4": ## Liberación de mercancia
             result = show_release_menu()
             if result == "0":
                 continue
-        elif choice == "5":
+        elif choice == "5": ## Registro de incidentes
+            result = incidents_menu()
+            if result == 0:
+                continue
             break
-        elif choice == "6":
+        elif choice == "6": ## Información del sistema
             break
-        elif choice == "7":
+        elif choice == "7": ## Gestión de ficheros
             break
-        elif choice == "8":
+        elif choice == "8": ## Salir
             print("Saliendo...")
             break
         else:

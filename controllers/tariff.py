@@ -1,4 +1,3 @@
-from controllers.inspection import list_merchandises_to_approve
 from data.memory_storage import categories_with_tariffs
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_cyan, send_error, send_green, send_grey, send_success, send_yellow
@@ -54,7 +53,7 @@ def calculate_tariff_for_merchandise():
                 send_green(f"Los aranceles para el producto {item_id} son de ", end="")
                 send_yellow(f"{tariff}€")
 
-                pay = input("¿Desea pagar el arancel ahora? (0-1): ")
+                pay = input("¿Desea pagar el arancel ahora? (0: no, 1: sí): ")
                 if pay == "1":
                     data["tariff_paid"] = True
                     send_success("¡Producto pagado!")

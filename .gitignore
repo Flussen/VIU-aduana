@@ -173,3 +173,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 released_items.txt
+incidents.txt
