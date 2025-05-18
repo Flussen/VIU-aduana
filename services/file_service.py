@@ -1,8 +1,21 @@
+"""
+Módulo para gestión de archivos del sistema aduanero.
+
+Incluye funciones para guardar y cargar tanto mercancías como incidentes
+desde archivos de texto. Cada línea representa una entrada separada por punto y coma.
+"""
 import os
 
 from utils.color import send_error, send_info
 
 def save_merchandise_to_txt(filename: str, store: dict):
+    """
+    Guarda las mercancías en un archivo de texto, una por línea.
+
+    Args:
+        filename (str): Nombre del archivo destino.
+        store (dict): Diccionario con los datos de las mercancías.
+    """
     try:
         with open(filename, "w", encoding="utf-8") as f:
             for id, data in store.items():
@@ -14,6 +27,15 @@ def save_merchandise_to_txt(filename: str, store: dict):
         return e
 
 def load_merchandise_from_txt(filename: str) -> dict:
+    """
+    Carga las mercancías desde un archivo de texto.
+
+    Args:
+        filename (str): Ruta del archivo de texto a cargar.
+
+    Returns:
+        dict: Diccionario con las mercancías cargadas.
+    """
     store = {}
 
     if not os.path.exists(filename):
@@ -55,6 +77,13 @@ def save_incidents_to_txt(filename: str, incident_list: list):
         return e
 
 def load_incidents_from_txt(filename: str) -> list:
+    """
+    Guarda una lista de incidentes en un archivo de texto.
+
+    Args:
+        filename (str): Nombre del archivo destino.
+        incident_list (list): Lista de incidentes, cada uno con 'id' y 'description'.
+    """
     incident_list = []
 
     if not os.path.exists(filename):

@@ -1,4 +1,10 @@
+"""
+Menú principal del sistema de aduanas.
 
+Este módulo define la función `showMenu`, encargada de mostrar
+las diferentes secciones del sistema mediante una interfaz sencilla
+por consola.
+"""
 from controllers.incidents import incidents_menu
 from controllers.inspection import inspection_section
 from controllers.register import register_merchandise
@@ -13,6 +19,13 @@ from controllers.file_operations import show_file_operations_menu
 
 
 def showMenu():
+    """
+    Muestra el menú principal del sistema de aduanas.
+
+    Permite al usuario registrar mercancías, inspeccionarlas,
+    calcular aranceles, liberarlas, registrar incidentes, ver información
+    del sistema y realizar operaciones con ficheros.
+    """
     while True:
         clear_console()
         send_yellow("\n | Sistema de Aduana  | \n | por Alexander Rios |")
