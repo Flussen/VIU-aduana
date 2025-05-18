@@ -66,23 +66,33 @@ def load_merchandise_from_txt(filename: str) -> dict:
     return store
 
 def save_incidents_to_txt(filename: str, incident_list: list):
-    try:
-        with open(filename, "w", encoding="utf-8") as f:
-            for incident in incident_list:
-                line = f"{incident['id']};{incident['description']}\n"
-                f.write(line)
-        send_info(f"[✓] Incidentes guardados correctamente en {filename}")
-    except Exception as e:
-        send_error(f"[✗] Error al guardar los incidentes: {e}")
-        return e
-
-def load_incidents_from_txt(filename: str) -> list:
     """
     Guarda una lista de incidentes en un archivo de texto.
 
     Args:
         filename (str): Nombre del archivo destino.
-        incident_list (list): Lista de incidentes, cada uno con 'id' y 'description'.
+        incident_list (list): Lista de incidentes, cada uno con 'id', 'mercancia', 'descripcion' y 'fecha'.
+    """
+    try:
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write("ID;Mercancia;Descripción;Fecha\n")
+            for incident in incident_list:
+                f.write(f"{incident['id']};{incident['mercancia']};{incident['descripcion']};{incident['fecha']}\n")
+        send_info(f"Incidentes guardados correctamente en {filename}")
+    except Exception as e:
+        send_error(f"Error al guardar los incidentes: {e}")
+        return e
+
+
+def load_incidents_from_txt(filename: str) -> list:
+    """
+    Carga una lista de incidentes desde un archivo de texto.
+
+    Args:
+        filename (str): Ruta del archivo.
+
+    Returns:
+        list: Lista de incidentes como diccionarios con 'id', 'mercancia', 'descripcion' y 'fecha'.
     """
     incident_list = []
 
@@ -92,14 +102,21 @@ def load_incidents_from_txt(filename: str) -> list:
 
     try:
         with open(filename, "r", encoding="utf-8") as f:
+            next(f)  # Saltar encabezado
             for line in f:
                 parts = line.strip().split(";")
-                if len(parts) == 2:
-                    incident = {"id": parts[0], "description": parts[1]}
+                if len(parts) == 4:
+                    incident = {
+                        "id": parts[0],
+                        "mercancia": parts[1],
+                        "descripcion": parts[2],
+                        "fecha": parts[3]
+                    }
                     incident_list.append(incident)
-        send_info(f"[✓] Incidentes cargados correctamente desde {filename}")
+        send_info(f"Incidentes cargados correctamente desde {filename}")
     except Exception as e:
-        send_error(f"[✗] Error al leer los incidentes: {e}")
+        send_error(f"Error al leer los incidentes: {e}")
         return e
 
     return incident_list
+

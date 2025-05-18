@@ -17,11 +17,12 @@ DESCRIPTION = "descripcion"
 DATE = "fecha"
 INCIDENTS_FILE = "incidents.txt"
 
-def new_incident_obj(date, merch, description):
+def new_incident_obj(id, date, merch, description):
     """
     Crea un nuevo diccionario que representa un incidente.
 
     Args:
+        id (str): ID del incidente (ingresado por el usuario).
         date (str): Fecha del incidente.
         merch (str): ID de la mercancía.
         description (str): Descripción del incidente.
@@ -30,11 +31,12 @@ def new_incident_obj(date, merch, description):
         dict: Incidente representado como diccionario.
     """
     return {
-        DATE: date,
-        MERCH: merch,
-        DESCRIPTION: description
-        }
-    
+        "id": id,
+        "mercancia": merch,
+        "descripcion": description,
+        "fecha": date
+    }
+
 def new_incident():
     """
     Permite al usuario registrar un nuevo incidente.
@@ -44,22 +46,30 @@ def new_incident():
     """
     clear_console()
     send_yellow(">> Registrar nueva incidencia de mercancia.")
-    send_grey("Ingresa el ID de la mercancia (M123):", end=" ")
-    merch = input()
-    if merch in incidents:
-        send_error("La mercancia ya existe!")
+    
+    send_grey("Ingresa el ID del incidente (por ej. M123):", end=" ")
+    incident_id = input()
+    if any(i["id"] == incident_id for i in incidents):
+        send_error("¡Ese ID de incidente ya existe!")
         input(RETURN_BACK_STR)
         return 1
+
+    send_grey("Ingresa el ID de la mercancía (por ej. M123):", end=" ")
+    merch = input()
+    
     send_grey("Ingresa la descripción:", end=" ")
     description = input()
+    
     date = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-    incidents.append(new_incident_obj(date, merch, description))
+    incidents.append(new_incident_obj(incident_id, date, merch, description))
+    
     clear_console()
     send_success("Incidente registrado!")
-    send_yellow("Para persistir los datos del incidente, vuelva al menú y seleccione salvar incidentes!")
+    send_yellow("Para persistir los datos del incidente, vuelva al menú y seleccione salvar incidentes.")
     print(" ")
     input(RETURN_BACK_STR)
     return 0
+
 
 def list_incidents():
     """
