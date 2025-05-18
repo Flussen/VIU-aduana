@@ -17,6 +17,19 @@ Proyecto académico de simulación de un sistema aduanero, desarrollado como apl
 
 ---
 
+## Iniciar el proyecto
+
+Sencillamente ejecuta:
+```bash
+python main.py
+```
+o en windows:
+```bash
+py main.py
+```
+
+---
+
 ## 🧪 Pruebas con datos simulados (Mock)
 
 Para agilizar las pruebas del sistema, se puede usar el archivo `mock_merchandise.json`, que contiene mercancías precargadas de ejemplo:
