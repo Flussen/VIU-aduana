@@ -17,7 +17,32 @@ Proyecto académico de simulación de un sistema aduanero, desarrollado como apl
 
 ---
 
-## Iniciar el proyecto
+## Antes de iniciar el proyecto
+
+Antes de iniciar el proyecto, considera las configuraciones:
+
+Puedes y debes configurar las categorías y precios que se cobrará por aranceles. Para ello, crea un archivo `configTasas.txt` en la raíz del proyecto con el siguiente formato:
+
+```
+Categoría1:Precio1
+Categoría2:Precio2
+Categoría3:Precio3
+...
+```
+
+Considera que el archivo debe tener el mismo nombre que el archivo `configTasas.txt` en la raíz del proyecto.
+
+```bash
+Electrónica:15
+Ropa:10
+Alimentos:5
+Productos químicos:20
+Otros:12
+```
+---
+
+## 🧪 Ejecutar el proyecto
+
 
 Sencillamente ejecuta:
 ```bash
