@@ -1,3 +1,10 @@
+"""
+Liberación de mercancías aprobadas.
+
+Este módulo permite liberar productos que ya han sido aprobados
+y tienen arancel pagado, registrándolos en un archivo de texto.
+"""
+
 from utils.color import send_blue, send_error, send_grey, send_success, send_yellow
 from utils.common import RETURN_TO_MENU_STR
 from utils.status import APPROVED
@@ -8,6 +15,14 @@ RELEASED_ITEMS_FILE = "released_items.txt"
 
 
 def show_release_menu():
+    """
+    Muestra los productos listos para liberación y permite al usuario seleccionar uno.
+
+    Un producto es liberable si está aprobado y tiene un arancel asignado.
+    
+    Returns:
+        int: 1 si se libera un producto, 0 en cualquier otro caso.
+    """
     send_yellow("-- Productos pendientes de liberación --")
     pending_release = [
         (id, data) for id, data in merchandise_store.items()
@@ -42,6 +57,13 @@ def show_release_menu():
     return 0
 
 def release_item(item):
+    """
+    Registra la mercancía como liberada si cumple con los requisitos
+    y la elimina del almacén de memoria.
+
+    Args:
+        item (dict): Diccionario con los datos de la mercancía.
+    """
     if (
         item["status"] == APPROVED
         and item.get("tariff") not in (None, 0)

@@ -1,3 +1,9 @@
+"""
+Cálculo y gestión de aranceles para mercancías aprobadas.
+
+Este módulo permite calcular los aranceles según la categoría,
+asignarlos a las mercancías aprobadas y registrar el pago correspondiente.
+"""
 from data.memory_storage import categories_with_tariffs
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_cyan, send_error, send_green, send_grey, send_success, send_yellow
@@ -7,20 +13,46 @@ from data.memory_storage import merchandise_store
 from utils.utils import print_merchandise_info
 
 def calculate_tariff(item):
+    """
+    Calcula el arancel de una mercancía en base al valor y la tasa de su categoría.
+
+    Args:
+        item (dict): Datos de la mercancía.
+
+    Returns:
+        float: Valor del arancel calculado.
+    """
     return item["value"] * (categories_with_tariffs[item["category"]] / 100)
 
 
 def list_approved_merchandise():
+    """
+    Devuelve las mercancías aprobadas que aún no tienen arancel calculado.
+
+    Returns:
+        list: Lista de tuplas (ID, datos).
+    """
     return [(item_id, data) for item_id, data in merchandise_store.items()
             if data["status"] == APPROVED and not data.get("tariff")]
 
 
 def list_merchandise_pending_payment():
+    """
+    Devuelve las mercancías aprobadas con arancel asignado pero no pagado.
+
+    Returns:
+        list: Lista de tuplas (ID, datos).
+    """
     return [(item_id, data) for item_id, data in merchandise_store.items()
             if data["status"] == APPROVED and not data.get("tariff_paid")]
 
 
 def calculate_tariff_for_merchandise():
+    """
+    Muestra las mercancías aprobadas sin arancel calculado,
+    permite seleccionar una y calcular su arancel,
+    con opción de pagarlo en el momento.
+    """
     approved_items = list_approved_merchandise()
     if not approved_items:
         send_yellow("¡No hay mercancías aprobadas!")
@@ -67,6 +99,10 @@ def calculate_tariff_for_merchandise():
 
 
 def pay_tariff_for_merchandise():
+    """
+    Muestra mercancías con arancel calculado pendiente de pago,
+    permite seleccionar una y marcar el pago.
+    """
     pending_items = list_merchandise_pending_payment()
     if not pending_items:
         send_yellow("¡No hay mercancías pendientes de pago!")
@@ -105,6 +141,11 @@ def pay_tariff_for_merchandise():
     input(RETURN_TO_MENU_STR)
 
 def show_tariff_menu():
+    """
+    Muestra el menú de opciones de aranceles:
+    - Calcular arancel para productos aprobados.
+    - Pagar aranceles pendientes.
+    """
     while True:
         clear_console()
         send_blue("Menú > 3. Cálculo de aranceles")

@@ -1,5 +1,11 @@
-# Registro de mercancias. Aquí se crea las mercancias en RAM (diccionario)
-# para luego gestionarse en los próximos procesos como inspección.
+"""
+Controlador de registro de mercancías.
+
+Este módulo permite al usuario registrar nuevas mercancías en memoria (RAM),
+que luego podrán ser inspeccionadas, valoradas y liberadas.
+
+Requiere que la categoría esté previamente registrada.
+"""
 
 from models.merchandise import new_merchandise
 from utils.cleaner import clear_console
@@ -11,10 +17,14 @@ from data.memory_storage import categories_with_tariffs
 
 def register_merchandise():
     """
-    Función entrada para gestionar el controlador "Register".
-    Para registro de mercancias.
-    """
+    Inicia el proceso interactivo de registro de mercancías.
 
+    Solicita los datos al usuario y valida que sean correctos.
+    Guarda la mercancía en memoria con estado 'PENDING'.
+    
+    Returns:
+        str: Opción del usuario tras registrar (0 = volver, 1 = nuevo, 2 = listar).
+    """
     clear_console()
     send_blue("Menú > 1. Registro Mercancia")
     print(" ")
@@ -72,7 +82,10 @@ def register_merchandise():
 
 def set_weight_with_exception_handler():
     """
-    Función helper para validar el peso de una mercancia a tipo Float.
+    Solicita y valida el peso de la mercancía ingresado por el usuario.
+
+    Returns:
+        float or None: Peso en kg si es válido, None si hay error.
     """
     try:
         weight = float(input("Peso (kg): "))
@@ -88,7 +101,10 @@ def set_weight_with_exception_handler():
 
 def set_value_with_exception_handler():
     """
-    Función helper para validar el valor de una mercancia a tipo Float.
+    Solicita y valida el valor declarado de la mercancía.
+
+    Returns:
+        float or None: Valor si es válido, None si hay error.
     """
     try:
         value = float(input("Valor declarado: "))

@@ -1,4 +1,9 @@
-## Inspección y aprobación de mercancias.
+"""
+Inspección y aprobación de mercancías.
+
+Este módulo permite listar los productos pendientes de inspección
+y asignarles un estado: aprobado o rechazado.
+"""
 
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_cyan, send_error, send_grey, send_success, send_yellow
@@ -8,10 +13,10 @@ from utils.status import APPROVED, PENDING, REFUSED
 
 def inspection_section():
     """
-    Función de entrada para gestionar el controlador "Inspection".
-    Para inspección y aprobación de mercancias.
-    """
+    Punto de entrada para gestionar la inspección de mercancías.
 
+    Muestra opciones disponibles para listar los productos pendientes.
+    """
     clear_console()
     send_blue("Menú > 2. Inspección y Aprobación")
     print(" ")
@@ -26,6 +31,10 @@ def inspection_section():
         list_merchandises_to_approve()
 
 def list_merchandises_to_approve():
+    """
+    Lista las mercancías con estado 'PENDING' y permite al usuario
+    aprobarlas o rechazarlas, asignando el estado correspondiente.
+    """
     clear_console()
     send_yellow("-- Productos pendientes de inspección --")
 

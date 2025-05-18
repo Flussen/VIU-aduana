@@ -1,3 +1,10 @@
+"""
+Gestión de incidentes relacionados con mercancías.
+
+Este módulo permite registrar, listar y guardar incidentes relacionados con el proceso aduanero.
+Los incidentes quedan almacenados en memoria y pueden persistirse en un archivo de texto.
+"""
+
 from datetime import datetime
 import os
 from data.memory_storage import incidents
@@ -11,6 +18,17 @@ DATE = "fecha"
 INCIDENTS_FILE = "incidents.txt"
 
 def new_incident_obj(date, merch, description):
+    """
+    Crea un nuevo diccionario que representa un incidente.
+
+    Args:
+        date (str): Fecha del incidente.
+        merch (str): ID de la mercancía.
+        description (str): Descripción del incidente.
+
+    Returns:
+        dict: Incidente representado como diccionario.
+    """
     return {
         DATE: date,
         MERCH: merch,
@@ -18,6 +36,12 @@ def new_incident_obj(date, merch, description):
         }
     
 def new_incident():
+    """
+    Permite al usuario registrar un nuevo incidente.
+
+    Retorna:
+        int: 0 si se registró correctamente, 1 si el ID ya existe.
+    """
     clear_console()
     send_yellow(">> Registrar nueva incidencia de mercancia.")
     send_grey("Ingresa el ID de la mercancia (M123):", end=" ")
@@ -38,6 +62,9 @@ def new_incident():
     return 0
 
 def list_incidents():
+    """
+    Lista todos los incidentes registrados en memoria.
+    """
     clear_console()
     send_cyan("-- Incidentes --")
     if not incidents: 
@@ -53,6 +80,12 @@ def list_incidents():
     return 0
 
 def save_incidents():
+    """
+    Guarda los incidentes registrados en el archivo incidents.txt.
+
+    Returns:
+        int: 0 siempre (control de flujo del menú).
+    """
     if not incidents:
         send_error("No hay incidentes registrados.")
         input(RETURN_BACK_STR)
@@ -73,6 +106,18 @@ def save_incidents():
     return 0
 
 def incidents_menu():
+    """
+    Muestra el menú de gestión de incidentes.
+
+    Opciones:
+    - 0: Volver al menú principal.
+    - 1: Listar incidentes.
+    - 2: Registrar nuevo incidente.
+    - 3: Guardar incidentes en archivo.
+    
+    Returns:
+        int: 0 en todos los casos para mantener el flujo de ejecución.
+    """
     clear_console()
     send_blue("Menú > 5. Registro de incidentes")
     print(" ")

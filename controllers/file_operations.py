@@ -1,5 +1,11 @@
+"""
+Gestión de carga y guardado de datos del sistema aduanero.
+
+Este módulo permite al usuario guardar la información actual de mercancías e incidentes
+en archivos de texto, así como cargarla nuevamente desde esos archivos.
+"""
 from utils.cleaner import clear_console
-from utils.color import send_blue, send_yellow, send_error
+from utils.color import send_blue
 from data.memory_storage import merchandise_store, incidents
 
 from services.file_service import (
@@ -13,6 +19,13 @@ MERCH_FILE = "data/merchandise.txt"
 INCIDENTS_FILE = "data/incidents.txt"
 
 def show_file_operations_menu():
+    """
+    Muestra el menú de operaciones de archivos para:
+    - Guardar los datos actuales (mercancías e incidentes) en archivos de texto.
+    - Cargar datos previamente guardados desde archivos.
+
+    Esta función permite mantener la persistencia entre sesiones del sistema.
+    """
     clear_console()
     send_blue("Menú > 7. Cargar y guardar información")
     print(" ")
