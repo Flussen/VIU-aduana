@@ -42,7 +42,11 @@ def show_release_menu():
     return 0
 
 def release_item(item):
-    if item["status"] == APPROVED and (item.get("tariff", 0) > 0) and (not item.get("tariff_paid", False) or item.get("tariff_paid", None) == False):
+    if (
+        item["status"] == APPROVED
+        and item.get("tariff") not in (None, 0)
+        and item.get("tariff_paid") not in (None, False)
+    ):
         try:
             file_exists = os.path.exists(RELEASED_ITEMS_FILE)
             with open(RELEASED_ITEMS_FILE, 'a', encoding='utf-8') as file:
