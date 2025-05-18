@@ -42,3 +42,35 @@ def load_merchandise_from_txt(filename: str) -> dict:
         return e
 
     return store
+
+def save_incidents_to_txt(filename: str, incident_list: list):
+    try:
+        with open(filename, "w", encoding="utf-8") as f:
+            for incident in incident_list:
+                line = f"{incident['id']};{incident['description']}\n"
+                f.write(line)
+        send_info(f"[✓] Incidentes guardados correctamente en {filename}")
+    except Exception as e:
+        send_error(f"[✗] Error al guardar los incidentes: {e}")
+        return e
+
+def load_incidents_from_txt(filename: str) -> list:
+    incident_list = []
+
+    if not os.path.exists(filename):
+        send_error(f"[!] El archivo '{filename}' no existe.")
+        return incident_list
+
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            for line in f:
+                parts = line.strip().split(";")
+                if len(parts) == 2:
+                    incident = {"id": parts[0], "description": parts[1]}
+                    incident_list.append(incident)
+        send_info(f"[✓] Incidentes cargados correctamente desde {filename}")
+    except Exception as e:
+        send_error(f"[✗] Error al leer los incidentes: {e}")
+        return e
+
+    return incident_list

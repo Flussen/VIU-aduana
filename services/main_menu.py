@@ -7,6 +7,9 @@ from controllers.tariff import show_tariff_menu
 from utils.cleaner import clear_console
 from utils.color import send_blue, send_error, send_grey, send_yellow
 from data.memory_storage import merchandise_store
+from controllers.system_info import show_system_info
+from controllers.file_operations import show_file_operations_menu
+
 
 
 def showMenu():
@@ -59,9 +62,11 @@ def showMenu():
                 continue
             break
         elif choice == "6": ## Información del sistema
-            break
+            show_system_info()
+            continue
         elif choice == "7": ## Gestión de ficheros
-            break
+            show_file_operations_menu()
+            continue
         elif choice == "8": ## Salir
             print("Saliendo...")
             break
