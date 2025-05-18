@@ -44,11 +44,9 @@ def show_file_operations_menu():
         loaded_incidents = load_incidents_from_txt(INCIDENTS_FILE)
 
         if isinstance(loaded_merchandise, dict):
-            merchandise_store.clear()
             merchandise_store.update(loaded_merchandise)
 
         if isinstance(loaded_incidents, list):
-            incidents.clear()
             incidents.extend(loaded_incidents)
 
     input("Presiona ENTER para volver al menú...")

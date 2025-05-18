@@ -6,6 +6,7 @@ desde archivos de texto. Cada línea representa una entrada separada por punto y
 """
 import os
 
+from controllers.incidents import DATE, DESCRIPTION, MERCH, new_incident_obj
 from utils.color import send_error, send_info
 
 def save_merchandise_to_txt(filename: str, store: dict):
@@ -77,7 +78,7 @@ def save_incidents_to_txt(filename: str, incident_list: list):
         with open(filename, "w", encoding="utf-8") as f:
             f.write("ID;Mercancia;Descripción;Fecha\n")
             for incident in incident_list:
-                f.write(f"{incident['id']};{incident['mercancia']};{incident['descripcion']};{incident['fecha']}\n")
+                f.write(f"{incident[MERCH]};{incident[DESCRIPTION]};{incident[DATE]}\n")
         send_info(f"Incidentes guardados correctamente en {filename}")
     except Exception as e:
         send_error(f"Error al guardar los incidentes: {e}")
@@ -102,17 +103,14 @@ def load_incidents_from_txt(filename: str) -> list:
 
     try:
         with open(filename, "r", encoding="utf-8") as f:
-            next(f)  # Saltar encabezado
+            next(f)
             for line in f:
                 parts = line.strip().split(";")
-                if len(parts) == 4:
-                    incident = {
-                        "id": parts[0],
-                        "mercancia": parts[1],
-                        "descripcion": parts[2],
-                        "fecha": parts[3]
-                    }
-                    incident_list.append(incident)
+                if len(parts) == 3:
+                    incident_list.append(new_incident_obj(parts[0], parts[2], parts[1]))
+        if not incident_list:
+            send_info("No se encontraron incidentes en el archivo.")
+            return incident_list
         send_info(f"Incidentes cargados correctamente desde {filename}")
     except Exception as e:
         send_error(f"Error al leer los incidentes: {e}")
