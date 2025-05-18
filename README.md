@@ -88,24 +88,12 @@ VIU-aduana/
 ├── README.md           # Este archivo
 ```
 
----
-
-## ▶️ Cómo ejecutar
-
-Requiere Python 3 y **no usa dependencias externas**.
-
-```bash
-python main_menu.py
-```
-
----
-
 ## 💾 Archivos de datos
 
 El sistema guarda y carga los datos desde archivos `.txt` para persistencia:
 
-- `data/merchandise.txt`
-- `data/incidents.txt`
+- `merchandise.txt`
+- `incidents.txt`
 
 Estos pueden ser editados manualmente o manipulados desde el menú 7.
 Los datos siguen un formato CSV (separado por punto y coma).
