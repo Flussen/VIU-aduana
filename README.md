@@ -83,8 +83,8 @@ VIU-aduana/
 ├── controllers/        # Controladores de cada módulo del menú
 ├── services/           # Servicios de negocio (cálculo, persistencia)
 ├── utils/              # Utilidades: limpieza, colores, constantes
-├── data/               # Almacenamiento temporal y persistencia (.txt)
-├── main_menu.py        # Punto de entrada del menú principal
+├── data/               # Variables de uso genral en memoria
+├── main.py        # Punto de entrada del menú principal
 ├── README.md           # Este archivo
 ```
 
