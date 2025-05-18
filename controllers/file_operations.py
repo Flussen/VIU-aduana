@@ -15,8 +15,8 @@ from services.file_service import (
     load_incidents_from_txt
 )
 
-MERCH_FILE = "data/merchandise.txt"
-INCIDENTS_FILE = "data/incidents.txt"
+MERCH_FILE = "merchandise.txt"
+INCIDENTS_FILE = "incidents.txt"
 
 def show_file_operations_menu():
     """
