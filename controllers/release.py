@@ -62,7 +62,7 @@ def release_item(item):
             return
         item_id = item["id"]
         del merchandise_store[item["id"]]
-
+ 
         send_success(f"¡Producto {item_id} liberado y registrado exitosamente!")
         input(RETURN_TO_MENU_STR)
     else:
